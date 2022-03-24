@@ -6,6 +6,7 @@
 #include "funcs.h"
 
 int main() {
-  invert("image.pgm");
+  invert("image1.pgm");
+  invertHalf("image1.pgm");
   return 0;
 }

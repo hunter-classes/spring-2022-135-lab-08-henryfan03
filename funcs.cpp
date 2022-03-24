@@ -34,7 +34,6 @@ int invertHalf(std::string filename)
   std::string input = "image1.pgm";
   int img[MAX_H][MAX_W];
   int h, w;
-  int halfmark = h/2;
   readImage(input, img, h, w); // read it from the file "inImage.pgm"
   // h and w were passed by reference and
   // now contain the dimensions of the picture
@@ -44,7 +43,7 @@ int invertHalf(std::string filename)
   int out[MAX_H][MAX_W];
   for(int row = 0; row < h; row++) {
     for(int col = 0; col < w; col++) {
-      if (row > halfmark) {
+      if (col >= w/2) {
         out[row][col] = 255-img[row][col];
       }
       else {
