@@ -8,5 +8,7 @@
 int main() {
   invert("image1.pgm");
   invertHalf("image1.pgm");
+  box("image1.pgm");
+  frame("image1.pgm");
   return 0;
 }
