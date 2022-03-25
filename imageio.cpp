@@ -72,31 +72,3 @@ void writeImage(std::string filename, int image[MAX_H][MAX_W], int height, int w
 	ostr.close();
 	return;
 }
-
-/*void writeScaledImage(std::string filename, int image[height*2][width*2], int height, int width) {
-	int image[height*2][width*2]
-	ofstream ostr;
-	ostr.open(filename);
-	if (ostr.fail()) {
-		cout << "Unable to write file\n";
-		exit(1);
-	};
-
-	// print the header
-	ostr << "P2" << endl;
-	// width, height
-	ostr << width << ' ';
-	ostr << height << endl;
-	//ostr << 255 << endl;
-
-	for (int row = 0; row < height; row++) {
-		for (int col = 0; col < width; col++) {
-			//assert(image[row][col] < 256);
-			assert(image[row][col] >= 0);
-			ostr << image[row][col] << ' ';
-			ostr << endl;
-		}
-	}
-	ostr.close();
-	return;
-}*/

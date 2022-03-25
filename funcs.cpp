@@ -25,7 +25,9 @@ int invert(std::string filename)
     }
   }
   // and save this new image to file "outImage.pgm"
-  writeImage("invertedImage.pgm",out, h, w);
+  std::string newfilename = "inverted" + filename;
+  writeImage(newfilename,out, h, w);
+  std::cout << "Successfully created " << newfilename << " from " << filename << std::endl;
   return 0;
 }
 
@@ -51,8 +53,9 @@ int invertHalf(std::string filename)
       }
     }
   }
-  // and save this new image to file "outImage.pgm"
-  writeImage("halfInvertedImage.pgm",out, h, w);
+  std::string newfilename = "halfinverted" + filename;
+  writeImage(newfilename,out, h, w);
+  std::cout << "Successfully created " << newfilename << " from " << filename << std::endl;
   return 0;
 }
 
@@ -78,8 +81,9 @@ int box(std::string filename)
       }
     }
   }
-  // and save this new image to file "outImage.pgm"
-  writeImage("boxImage.pgm",out, h, w);
+  std::string newfilename = "box" + filename;
+  writeImage(newfilename,out, h, w);
+  std::cout << "Successfully created " << newfilename << " from " << filename << std::endl;
   return 0;
 }
 
@@ -105,16 +109,18 @@ int frame(std::string filename)
       }
     }
   }
-  // and save this new image to file "outImage.pgm"
-  writeImage("frameImage.pgm",out, h, w);
+  std::string newfilename = "frame" + filename;
+  writeImage(newfilename,out, h, w);
+  std::cout << "Successfully created " << newfilename << " from " << filename << std::endl;
   return 0;
 }
 
-/*int scale(std::string filename)
+int scale(std::string filename)
 {
   std::string input = filename;
   int img[MAX_H][MAX_W];
   int h, w;
+  int j, k;
   readImage(input, img, h, w); // read it from the file "inImage.pgm"
   // h and w were passed by reference and
   // now contain the dimensions of the picture
@@ -122,16 +128,42 @@ int frame(std::string filename)
   // Now we can manipulate the image the way we like
   // for example we copy its contents into a new array
   int scaledout[h*2][w*2];
-  for(int row = 0; row < h; row += 2) {
+  j = 0;
+  k = 0;
+  for(int row = 0; row < h; row++) {
     for(int col = 0; col < w; col++) {
-      scaledout[row][col] = img[row][col];
-      scaledout[row+1][col] = img[row][col];
+      scaledout[j][k] = img[row][col];
+      scaledout[j+1][k] = img[row][col];
+      scaledout[j][k+1] = img[row][col];
+      scaledout[j+1][k+1] = img[row][col];
+      k += 2;
+    }
+    j += 2;
+    k = 0;
+  }
+  std::ofstream ostr;
+  ostr.open("scaledimage.pgm");
+  if (ostr.fail()) {
+    std::cout << "Unable to write file\n";
+    exit(1);
+  };
+  ostr << "P2" << std::endl;
+  ostr << w*2 << ' ';
+  ostr << h*2 << std::endl;
+  ostr << 255 << std::endl;
+  for (int row = 0; row < h*2; row++) {
+    for (int col = 0; col < w*2; col++) {
+      assert(scaledout[row][col] < 256);
+      assert(scaledout[row][col] >= 0);
+      ostr << scaledout[row][col] << ' ';
+      ostr << std::endl;
     }
   }
-  // and save this new image to file "outImage.pgm"
-  writeImage("scaleImage.pgm",scaledout, h, w);
+  ostr.close();
+  std::string newfilename = "scaled" + filename;
+  std::cout << "Successfully created " << newfilename << " from " << filename << std::endl;
   return 0;
-}*/
+}
 
 int pixelate(std::string filename)
 {
@@ -156,7 +188,8 @@ int pixelate(std::string filename)
       out[row+1][col+1] = avg;
     }
   }
-  // and save this new image to file "outImage.pgm"
-  writeImage("pixelatedimage.pgm",out, h, w);
+  std::string newfilename = "pixelated" + filename;
+  writeImage(newfilename,out, h, w);
+  std::cout << "Successfully created " << newfilename << " from " << filename << std::endl;
   return 0;
 }
