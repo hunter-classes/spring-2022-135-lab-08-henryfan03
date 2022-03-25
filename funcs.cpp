@@ -142,7 +142,8 @@ int scale(std::string filename)
     k = 0;
   }
   std::ofstream ostr;
-  ostr.open("scaledimage.pgm");
+  std::string newfilename = "scaled" + filename;
+  ostr.open(newfilename);
   if (ostr.fail()) {
     std::cout << "Unable to write file\n";
     exit(1);
@@ -160,7 +161,6 @@ int scale(std::string filename)
     }
   }
   ostr.close();
-  std::string newfilename = "scaled" + filename;
   std::cout << "Successfully created " << newfilename << " from " << filename << std::endl;
   return 0;
 }
