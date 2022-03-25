@@ -7,7 +7,7 @@
 
 int main() {
   std::cout << "Running Lab Tasks on 'image1':" << std::endl;
-  std::cout << "-----------------------------------" << stdl::endl;
+  std::cout << "-----------------------------------" << std::endl;
   std::cout << "invert('image1.pgm')" << std::endl;
   invert("image1.pgm");
   std::cout << std::endl;
@@ -27,7 +27,7 @@ int main() {
   pixelate("image1.pgm");
   std::cout << std::endl;
   std::cout << "Running Lab Tasks on 'image2':" << std::endl;
-  std::cout << "-----------------------------------" << stdl::endl;
+  std::cout << "-----------------------------------" << std::endl;
   std::cout << "invert('image2.pgm')" << std::endl;
   invert("image2.pgm");
   std::cout << std::endl;
